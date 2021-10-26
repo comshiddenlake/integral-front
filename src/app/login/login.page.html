@@ -1,0 +1,33 @@
+<ion-content>
+  <div class="col-md-6"></div>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <h2 text-center>Ingreso</h2>
+      <div class="form-group">
+          <ion-list>
+            <ion-item>        
+          <ion-input placeholder="Nombre de usuario o email" type="text" formControlName="usernameOrEmail" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.usernameOrEmail.errors }"></ion-input>
+            
+          <div *ngIf="submitted && f.usernameOrEmail.errors" class="invalid-feedback">
+              <div *ngIf="f.usernameOrEmail.errors.required">Se requiere usuario/email</div>
+          </div>
+        </ion-item>
+        </ion-list>
+      </div>
+      <div class="form-group">
+          <ion-list>
+            <ion-item>
+          <ion-input placeholder="Contraseña" type="password" formControlName="password" class="form-control"
+              [ngClass]="{ 'is-invalid': submitted && f.password.errors }" ></ion-input>
+          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+              <div *ngIf="f.password.errors.required">Se requiere una contraseña</div>
+          </div>
+          </ion-item>
+        </ion-list>
+      </div>
+      <div class="form-group">
+          <ion-button [disabled]="loading" (click)="onSubmit()" shape="full" expand="block" class="btn btn-primary">Iniciar sesión</ion-button>
+      </div>
+      <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+  </form>
+</ion-content>

@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Admin - Feriados</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="feriadoForm" (ngSubmit)="onSubmit()">
+    <ion-item-divider>
+      <div class="form-group">
+        <ion-input placeholder="Descripcion" type="text" formControlName="descripcion" class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.descripcion.errors }"></ion-input>
+        <div *ngIf="submitted && f.descripcion.errors" class="invalid-feedback">
+          <div *ngIf="f.descripcion.errors.required">Descripcion es requerido</div>
+        </div>
+      </div>
+    </ion-item-divider>
+    <ion-item-divider>
+
+      <div class="form-group">
+        <ion-input type="text" formControlName="fecha" class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.fecha.errors }">
+          <ion-button (click)="openCalendar()">Fecha</ion-button>
+        </ion-input>
+        <div *ngIf="submitted && f.fecha.errors" class="invalid-feedback">
+          <div *ngIf="f.fecha.errors.required">Fecha requerida</div>
+        </div>
+      </div>
+    </ion-item-divider>
+    <div class="form-group">
+      <ion-button (click)="onSubmit()" shape="full" expand="block" color="success">Añadir
+      </ion-button>
+    </div>
+  </form>
+
+  <div>
+    <hr>
+    <ion-title size="large">Feriados</ion-title>
+    <ion-list>
+      <ion-item *ngFor="let feriado of feriados">
+        <ion-label>{{feriado.fecha}} {{feriado.descripcion}}<ion-button style="float: right;" (click)="editarPersona(persona)"
+            color="primary">
+            Editar</ion-button>
+          <ion-button (click)="onSubmit()" style="float: right;" color="danger">Eliminar</ion-button>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

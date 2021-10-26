@@ -24,3 +24,48 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+.my-day {
+    background-color: #F74E3D !important;
+    color: white !important;
+    font-weight: bold;
+}
+
+.cofran {
+    background-color: #2DC424 !important;
+    font-weight: bold;
+}
+
+.presente {
+    background-color: #8389FB !important;
+    font-weight: bold;
+}
+
+.baja {
+    background-color: #8389FB !important;
+    font-weight: bold;
+}
+
+.vacaciones {
+    background-color: yellow !important;
+    font-weight: bold;
+}
+
+#ForRadioOptions
+.alert-radio-label.sc-ion-alert-md,
+.alert-radio-label.sc-ion-alert-ios {
+   white-space: normal;
+}
+.alert-tappable.alert-radio {
+   height: auto;
+   contain: content;
+}
+#ForCheckbox
+.alert-checkbox-label.sc-ion-alert-md,
+.alert-checkbox-label.sc-ion-alert-ios {
+   white-space: normal;
+}
+.alert-tappable.alert-checkbox {
+   height: auto;
+   contain: content;
+}

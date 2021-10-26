@@ -1,0 +1,128 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Asistencias</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col *ngFor="let persona of personas">
+        Vacio {{persona.nombre}}
+      </ion-col>
+      <ion-col>
+        Año
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        Vacio
+      </ion-col>
+      <ion-col>
+        Mes
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        Colaborador
+      </ion-col>
+      <ion-col>
+        P
+      </ion-col>
+      <ion-col>
+        P
+      </ion-col>
+      <ion-col>
+        P
+      </ion-col>
+      <ion-col>
+        P
+      </ion-col>
+      <ion-col>
+        P
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-list>
+    <ion-item>
+      <ion-label>Colaboradores</ion-label>
+      <ion-select multiple [(ngModel)]="personas" value="personas" [ngModelOptions]="{standalone: true}" (ionChange)="initializeCalendar()">
+        <ion-select-option *ngFor="let personaX of personas" [value]="personaX">{{personaX.nombre}}
+          {{personaX.apellido}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <ion-button (click)=prepareCalendar(personas)>Asistencias</ion-button>
+  <!-- la variable persona no está siendo recorrida -->
+  <div *ngFor="let persona of personas">
+    <div *ngFor="let asistencia of persona.asistencia">
+
+      <pre>
+  <code>
+    {{asistencia.typeof}}
+  </code>
+</pre>
+    </div>
+  </div>
+  <div>
+    <ion-row>
+      <ion-col>
+        <div>
+          Legajo
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          Nombre y apellido
+        </div>
+      </ion-col>
+      <ion-col>
+        <div>
+          3 of 3
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-grid>
+      <ion-row *ngFor="let persona of personas" nowrap class="forecast_container">
+        <ion-col>
+          <div>
+            {{persona.id}}
+          </div>
+        </ion-col>
+        <ion-col>
+          <div>
+            {{persona.nombre }} {{ persona.apellido}}
+          </div>
+        </ion-col>
+        <ion-col size="auto" *ngFor="let asistencia of persona.asistencia">
+          <div style="text-align: center;">
+            {{asistencia.fecha}}
+            <hr> {{asistencia.tipoAsistencia.tipoAsistencia[0]}}
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+  <div>
+    <h4>Francos tomados: {{franco}}</h4>
+    <h4>Presentes: {{presente}}</h4>
+    <div *ngIf='persona'>
+      Legajo: {{persona.id}} - Nombre: {{persona.nombre}} - Apellido: {{persona.apellido}}
+
+    </div>
+  </div>
+  <div>
+    <!--<ion-list padding *ngFor="let date of dates">
+      {{date}}
+    </ion-list>-->
+    <ion-item>
+      <ion-label>Asistencias</ion-label>
+      <ion-select [(ngModel)]="tipo" [ngModelOptions]="{standalone: true}">
+        <ion-select-option *ngFor="let tipo of tipoAsistencia" [value]="tipo">{{tipo.tipoAsistencia}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-button (click)=mandaleMecha(dates,persona,tipo) color="success">Cargar Asistencias</ion-button>
+  </div>
+</ion-content>

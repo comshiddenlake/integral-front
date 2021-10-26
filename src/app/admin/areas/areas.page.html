@@ -1,0 +1,65 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Administración - Areas</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 mb-5">
+                <h1>Agregar Área</h1>
+                <hr>
+                <form [formGroup]="areaForm" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <ion-input placeholder="Nombre" type="text" formControlName="nombre" class="form-control"
+                            [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }"></ion-input>
+                        <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+                            <div *ngIf="f.nombre.errors.required">Nombre es requerido</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <ion-item>
+                            <ion-label>Lider</ion-label>
+                            <ion-select class="form-control" [(ngModel)]="lider" [ngModelOptions]="{standalone: true}">
+                                <ion-select-option disabled selected>Seleccionar</ion-select-option>
+                                <ion-select-option *ngFor="let user of users" [value]="user">{{ user.username }}
+                                </ion-select-option>
+                            </ion-select>
+                        </ion-item>
+                    </div>
+                    <div class="form-group">
+                        <ion-item>
+                            <ion-label>
+                                Referente
+                            </ion-label>
+                            <ion-select class="form-control" [(ngModel)]="referente"
+                                [ngModelOptions]="{standalone: true}" required>
+                                <ion-select-option [value]="" disabled>Seleccionar</ion-select-option>
+                                <ion-select-option [value]=user *ngFor="let user of users">
+                                    {{user.username}}</ion-select-option>
+                            </ion-select>
+                        </ion-item>
+                    </div>
+                    <div class="form-group">
+                        <ion-button (click)="onSubmit()" shape="full" expand="block" color="success">Añadir
+                        </ion-button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div>
+        <hr>
+        <ion-title size="large">Áreas</ion-title>
+        <ion-list>
+            <ion-item *ngFor="let area of areas">
+                <ion-label>{{area.nombre}} <ion-button style="float: right;" (click)="editarArea(area)" color="primary">
+                        Editar</ion-button>
+                    <ion-button (click)="onSubmit()" style="float: right;" color="danger">Eliminar</ion-button>
+                </ion-label>
+            </ion-item>
+        </ion-list>
+    </div>
+
+</ion-content>

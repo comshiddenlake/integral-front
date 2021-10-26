@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>asistencias</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label>Colaboradores</ion-label>
+      <ion-select [(ngModel)]="persona" [ngModelOptions]="{standalone: true}" (ionChange)="initializeCalendar()">
+        <ion-select-option *ngFor="let persona of personas" [value]="persona">{{persona.nombre}} {{persona.apellido}}
+        </ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+  <ion-button (click)=prepareCalendar(persona,asistencias)>Asistencias</ion-button>
+
+  <div>
+    <h4>Francos tomados: {{franco}}</h4>
+    <h4>Presentes: {{presente}}</h4>
+    <div *ngIf='persona'>
+Legajo: {{persona.id}} - Nombre: {{persona.nombre}} - Apellido: {{persona.apellido}}
+
+    </div>
+  </div>
+  <div>
+    <ion-list padding *ngFor="let date of dates">
+          {{date}}
+  </ion-list>
+<ion-item>
+  <ion-label></ion-label>
+  <ion-select [(ngModel)]="tipo" [ngModelOptions]="{standalone: true}">
+    <ion-select-option *ngFor="let tipo of tipoAsistencia" [value]="tipo">{{tipo.tipoAsistencia}}
+    </ion-select-option>
+  </ion-select>
+</ion-item>
+<ion-button (click)=mandaleMecha(dates,persona,tipo) color="success">Cargar Asistencias</ion-button>
+  </div>
+</ion-content>

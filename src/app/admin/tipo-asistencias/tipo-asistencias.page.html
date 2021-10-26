@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Admin - Tipo Asistencias</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="tipoAsistenciaForm" (ngSubmit)="onSubmit()">
+    <ion-item-divider>
+      <div class="form-group">
+        <ion-input placeholder="Tipo Asistencia" type="text" formControlName="tipoAsistencia" class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.tipoAsistencia.errors }"></ion-input>
+        <div *ngIf="submitted && f.tipoAsistencia.errors" class="invalid-feedback">
+          <div *ngIf="f.tipoAsistencia.errors.required">Tipo asistencia es requerido</div>
+        </div>
+      </div>
+    </ion-item-divider>
+    <div class="form-group">
+      <ion-button (click)="onSubmit()" shape="full" expand="block" color="success">Añadir
+      </ion-button>
+    </div>
+  </form>
+
+  <div>
+    <hr>
+    <ion-title size="large">Tipo Asistencia</ion-title>
+    <ion-list>
+      <ion-item *ngFor="let tipoAsistencia of tipoAsistencias">
+        <ion-label>{{tipoAsistencia.tipoAsistencia}}<ion-button style="float: right;" (click)="editarPersona(persona)"
+            color="primary">
+            Editar</ion-button>
+          <ion-button (click)="onSubmit()" style="float: right;" color="danger">Eliminar</ion-button>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+</ion-content>

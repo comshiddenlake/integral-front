@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>colaboradores</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-button (click)="boton()">Boton</ion-button>
+
+  <ion-card *ngFor="let colaborador of colaboradores">   
+    <ion-item>
+      <ion-avatar>
+      </ion-avatar>
+      <ion-label>
+      <ion-card-header>
+        <ion-card-subtitle>
+          {{colaborador.nombre}}
+          {{colaborador.apellido}}
+        </ion-card-subtitle>
+        <ion-card-title class="ion-text-capitalize ion-text-nowrap" style="font-size: 1.1rem !important;">
+          {{colaborador.inicioActividad}}
+          <ion-icon name="arrow-forward-outline"></ion-icon>
+        </ion-card-title>      
+      </ion-card-header>
+      </ion-label>
+    </ion-item>
+</ion-card>
+
+</ion-content>

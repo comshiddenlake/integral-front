@@ -1,0 +1,108 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Colaboradores</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h1>Agregar Area</h1>
+  <hr>
+  <form [formGroup]="colaboradoresForm" (ngSubmit)="onSubmit()">
+    <ion-item-divider>
+
+      <div class="form-group">
+        <ion-input placeholder="Legajo" type="text" formControlName="id" class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.id.errors }"></ion-input>
+        <div *ngIf="submitted && f.id.errors" class="invalid-feedback">
+          <div *ngIf="f.id.errors.required">Legajo es requerido</div>
+        </div>
+      </div>
+
+    </ion-item-divider>
+    <ion-item-divider>
+
+      <div class="form-group">
+        <ion-input placeholder="Nombre" type="text" formControlName="nombre" class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }"></ion-input>
+        <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+          <div *ngIf="f.nombre.errors.required">Nombre es requerido</div>
+        </div>
+      </div>
+    </ion-item-divider>
+    <ion-item-divider>
+
+      <div class="form-group">
+        <ion-input placeholder="Apellido" type="text" formControlName="apellido" class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }"></ion-input>
+        <div *ngIf="submitted && f.apellido.errors" class="invalid-feedback">
+          <div *ngIf="f.apellido.errors.required">Apellido es requerido</div>
+        </div>
+      </div>
+    </ion-item-divider>
+    <ion-item-divider>
+
+      <div class="form-group">
+        <ion-input type="text" formControlName="fechaNacimiento" class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }">
+          <ion-button (click)="openCalendar('fechaNacimiento')">Fecha de nacimiento</ion-button>
+        </ion-input>
+        <div *ngIf="submitted && f.fechaNacimiento.errors" class="invalid-feedback">
+          <div *ngIf="f.fechaNacimiento.errors.required">Fecha de nacimiento es requerido</div>
+        </div>
+      </div>
+    </ion-item-divider>
+    <ion-item-divider>
+
+      <div class="form-group">
+        <ion-input type="text" formControlName="inicioActividad" class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }">
+          <ion-button (click)="openCalendar('inicioActividad')">Inicio de actividad</ion-button>
+        </ion-input>
+        <div *ngIf="submitted && f.inicioActividad.errors" class="invalid-feedback">
+          <div *ngIf="f.inicioActividad.errors.required">Inicio actividad es requerida</div>
+        </div>
+      </div>
+    </ion-item-divider>
+    <ion-item-divider>
+
+      <div class="form-group">
+        <ion-input type="text" formControlName="finActividad" class="form-control"
+          [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }">
+          <ion-button (click)="openCalendar('finActividad')">Fin de actividad</ion-button>
+        </ion-input>
+      </div>
+    </ion-item-divider>
+    <ion-item-divider>
+
+      <div class="form-group">
+        <ion-item>
+          <ion-label>Area</ion-label>
+          <ion-select class="form-control" [(ngModel)]="area" [ngModelOptions]="{standalone: true}">
+            <ion-select-option disabled selected>Seleccionar</ion-select-option>
+            <ion-select-option *ngFor="let area of areas" [value]="area">{{ area.nombre }}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </div>
+    </ion-item-divider>
+    <div class="form-group">
+      <ion-button (click)="onSubmit()" shape="full" expand="block" color="success">Añadir
+      </ion-button>
+    </div>
+  </form>
+
+
+  <div>
+    <hr>
+    <ion-title size="large">Colaboradores</ion-title>
+    <ion-list>
+      <ion-item *ngFor="let persona of personas">
+        <ion-label>{{persona.nombre}} {{persona.apellido}} <ion-button style="float: right;"
+            (click)="editarPersona(persona)" color="primary">
+            Editar</ion-button>
+          <ion-button (click)="onSubmit()" style="float: right;" color="danger">Eliminar</ion-button>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
